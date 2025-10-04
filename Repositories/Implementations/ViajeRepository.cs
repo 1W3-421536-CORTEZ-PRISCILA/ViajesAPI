@@ -11,6 +11,9 @@ namespace ViajesAPI.Repositories.Implementations
         {
             _context = context;
         }
+
+        
+
         public async Task<List<Viaje>> GetAll()
         {
            return await _context.Viajes.
@@ -24,7 +27,15 @@ namespace ViajesAPI.Repositories.Implementations
                 .FirstOrDefaultAsync(e => e.Estado == estado);
                 
         }
+        public async Task<bool> ActualizarFecha(Viaje viaje, int id)
+        {
+            var entity = await _context.Viajes.FindAsync(id);
+            if (entity == null) return false;
+            entity.FechaFin = viaje.FechaInicio;
+            _context.Viajes.Update(entity);
+            return await _context.SaveChangesAsync() > 0;
+                      
+        }
 
-        
     }
 }

@@ -6,5 +6,8 @@ namespace ViajesAPI.Repositories.Interfaces
     {
         Task<List<Viaje>> GetAll();
         Task<Viaje?> GetByEstado(string estado);
+        Task<bool> ActualizarFecha(Viaje viaje, int id);
+
+        
     }
 }

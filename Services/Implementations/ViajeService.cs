@@ -12,6 +12,9 @@ namespace ViajesAPI.Services.Implementations
         {
             _repository = repository;
         }
+
+        
+
         public async Task<List<Viaje>> GetAll()
         {
             return await _repository.GetAll();
@@ -20,6 +23,11 @@ namespace ViajesAPI.Services.Implementations
         public async Task<Viaje?> GetByEstado(string estado)
         {
             return await _repository.GetByEstado(estado);
+        }
+
+        public async Task<bool> ActualizarFecha(Viaje viaje, int id)
+        {
+            return await _repository.ActualizarFecha(viaje, id);
         }
     }
 }

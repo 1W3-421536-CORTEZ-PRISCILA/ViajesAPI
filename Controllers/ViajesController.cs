@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using ViajesAPI.Models;
 using ViajesAPI.Services.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -53,8 +54,9 @@ namespace ViajesAPI.Controllers
 
         // PUT api/<ViajesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put([FromQuery] int id, [FromBody] Viaje viaje)
         {
+            return Ok(await _viajeService.ActualizarFecha(viaje,id));
         }
 
         // DELETE api/<ViajesController>/5
