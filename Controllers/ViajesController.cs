@@ -19,14 +19,30 @@ namespace ViajesAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _viajeService.GetAll());
+            try
+            {
+                return Ok(await _viajeService.GetAll());
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Error interno");
+            }
+            
         }
 
         // GET api/<ViajesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{estado}")]
+        public async Task<IActionResult> Get(string estado)
         {
-            return "value";
+            try
+            {
+                return Ok(await _viajeService.GetByEstado(estado));
+            }
+            catch(Exception)
+            {
+                return StatusCode(500, "Error interno");
+            }
+            
         }
 
         // POST api/<ViajesController>

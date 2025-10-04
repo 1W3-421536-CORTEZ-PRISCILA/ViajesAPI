@@ -17,9 +17,12 @@ namespace ViajesAPI.Repositories.Implementations
                 Where(x => x.PrecioTotal >  100000).ToListAsync();
         }
 
-        public Task<Viaje> GetByEstado(string estado)
+        public async Task<Viaje?> GetByEstado(string estado)
         {
-            throw new NotImplementedException();
+            return await _context.Viajes
+                .Include(x => x.ViajeDetalles)
+                .FirstOrDefaultAsync(e => e.Estado == estado);
+                
         }
 
         

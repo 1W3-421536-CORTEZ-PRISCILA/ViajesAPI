@@ -16,5 +16,10 @@ namespace ViajesAPI.Services.Implementations
         {
             return await _repository.GetAll();
         }
+
+        public async Task<Viaje?> GetByEstado(string estado)
+        {
+            return await _repository.GetByEstado(estado);
+        }
     }
 }
